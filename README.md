@@ -62,9 +62,44 @@ The generated files:
 
 We added authentication to our application running:
 
-``
+`feathers generate authentication`
 
-feathers generate authentication
+Using all defaults options, we set up passport local auth, with a users service stored with NeDB.
+
+#### Create a user ####
+
+We will create a new user with the following data:
+
+```json 
+{
+  "email": "feathers@example.com",
+  "password": "secret"
+}
+```
+
+Generate the user with: 
+
+`curl 'http://localhost:3030/users/' -H 'Content-Type: application/json' --data-binary '{ "email": "feathers@example.com", "password": "secret" }'``
+
+#### Get a token ####
+
+To create a JWT, we can now post the login information to the authentication service, with the desired strategy (local):
+
+```json
+{
+  "strategy": "local",
+  "email": "feathers@example.com",
+  "password": "secret"
+}
+```
+
+Via CURL:
+
+`curl 'http://localhost:3030/authentication/' -H 'Content-Type: application/json' --data-binary '{ "strategy": "local", "email": "feathers@example.com", "password": "secret" '`
+
+The returned token can then be used to authenticate this specific user, by adding it to the Authorization header of new HTTP requests. Since we will also use Feathers on the client when creating a frontend, we don't have to worry about manually creating and using the token for this guide. For more information for authenticating REST API calls see the [REST client API documentation](https://docs.feathersjs.com/api/client/rest.html#authentication).
+
+
 
 ## Help
 
