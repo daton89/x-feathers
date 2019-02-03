@@ -41,11 +41,30 @@ $ feathers help                           # Show all commands
 
 ## Changes
 
+### Generated service 'me' ###
+
 We created a new endpoint generating a new service running: 
 
 `feathers generate service``
 
+Name of the service: me
+Path of the service: /me
+Database connection string: nedb://../data
 
+The generated files:
+
+- src/services/messages/messages.service.js - The service setup file which registers the service in a configure function
+- src/services/messages/messages.hooks.js - A file that returns an object with all hooks that should be registered on the service.
+- src/models/messages.model.js - The model for our messages. Since we are using NeDB, this will simply instantiate the filesystem database.
+- test/services/messages.test.js - A Mocha test for the service. Initially, it only tests that the service exists.
+
+### Generated authentication ###
+
+We added authentication to our application running:
+
+``
+
+feathers generate authentication
 
 ## Help
 
