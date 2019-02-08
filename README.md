@@ -99,7 +99,20 @@ Via CURL:
 
 The returned token can then be used to authenticate this specific user, by adding it to the Authorization header of new HTTP requests. Since we will also use Feathers on the client when creating a frontend, we don't have to worry about manually creating and using the token for this guide. For more information for authenticating REST API calls see the [REST client API documentation](https://docs.feathersjs.com/api/client/rest.html#authentication).
 
+#### Securing the me service ####
 
+Let's restrict our messages service to authenticated users.
+
+Add the content below to `me.hooks.js` file to use make auth required to access this route 
+
+```js
+const { authenticate } = require('@feathersjs/authentication').hooks;
+
+
+module.exports = {
+  before: {
+    all: [ authenticate('jwt') ],
+```
 
 ## Help
 
