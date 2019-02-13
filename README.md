@@ -114,6 +114,50 @@ module.exports = {
     all: [ authenticate('jwt') ],
 ```
 
+#### Processing data ####
+
+Generate a hook to pre process data on create.
+
+`feathers generate hook`
+
+Name it _process-me_, _before_ as kind of hook, hook it with the _me_ service, and finally choose _create_ as method of which the hook is for. 
+
+A hook was generated and wired up to the selected service. Now it's time to add some code. Update `src/hooks/process-me.js` to look like this:
+
+```js
+module.exports = function (options = {}) {
+  return async context => {
+    const { data } = context;
+
+    // Throw an error if we didn't get a text
+    if(!data.email) {
+      throw new Error('A profile must have an email');
+    }
+
+    // The authenticated user
+    const user = context.params.user;
+    // The actual message text
+    const email = context.data.email
+      // Messages can't be longer than 400 characters
+      .substring(0, 400);
+
+    // Override the original data (so that people can't submit additional stuff)
+    context.data = {
+      email,
+      // Set the user id
+      userId: user._id,
+      // Add the current date
+      createdAt: new Date().getTime()
+    };
+
+    // Best practice: hooks should always return the context
+    return context;
+  };
+};
+```
+
+
+
 ## Help
 
 For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).
