@@ -1,6 +1,6 @@
 # x-feathers
 
-> 
+>
 
 ## About
 
@@ -11,17 +11,8 @@ This project uses [Feathers](http://feathersjs.com). An open source web framewor
 Getting up and running is as easy as 1, 2, 3.
 
 1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
-2. Install your dependencies
-
-    ```
-    cd path/to/x-feathers; npm install
-    ```
-
-3. Start your app
-
-    ```
-    npm start
-    ```
+2. Install your dependencies: `cd path/to/x-feathers; npm install`
+3. Start your app `npm start`
 
 ## Testing
 
@@ -31,21 +22,19 @@ Simply run `npm test` and all your tests in the `test/` directory will be run.
 
 Feathers has a powerful command line interface. Here are a few things it can do:
 
-```
-$ npm install -g @feathersjs/cli          # Install Feathers CLI
+```bash
+npm install -g @feathersjs/cli          # Install Feathers CLI
 
-$ feathers generate service               # Generate a new Service
-$ feathers generate hook                  # Generate a new Hook
-$ feathers help                           # Show all commands
+feathers generate service               # Generate a new Service
+feathers generate hook                  # Generate a new Hook
+feathers help                           # Show all commands
 ```
 
 ## Changes
 
 ### Generated service 'me' ###
 
-We created a new endpoint generating a new service running: 
-
-`feathers generate service``
+We created a new endpoint generating a new service running: `feathers generate service`
 
 Name of the service: me
 Path of the service: /me
@@ -70,7 +59,7 @@ Using all defaults options, we set up passport local auth, with a users service 
 
 We will create a new user with the following data:
 
-```json 
+```json
 {
   "email": "feathers@example.com",
   "password": "secret"
@@ -156,15 +145,13 @@ module.exports = function (options = {}) {
 };
 ```
 
-
-
 ## Help
 
 For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).
 
 ## Changelog
 
-__0.1.0__
+### 0.1.0
 
 - Initial release
 
